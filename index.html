@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Sol Airdrop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <!-- <script src='main.js'></script> -->
+  </head>
+  <body>
+    <div class="form-center">
+      <form>
+        <label for="inputText">Enter your public key</label>
+        <input type="text" id="publicKey" name="inputText" />
+        <button type="button" onclick="submitForm()">Airdrop Solana</button>
+      </form>
+    </div>
+
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script>
+      const { Connection, PublicKey } = solanaWeb3;
+    </script>
+    <script>
+      function submitForm() {
+        var key = document.getElementById("publicKey").value;
+        if (key) {
+          const connection = new Connection("https://api.devnet.solana.com");
+          let publicKey = new PublicKey(key);
+          airdropSol();
+        } else {
+          console.log("Enter valid public key");
+        }
+      }
+      async function airdropSol() {
+        let txnHash = await connection.requestAirdrop(publicKey, 1e9);
+      }
+    </script>
+  </body>
+</html>

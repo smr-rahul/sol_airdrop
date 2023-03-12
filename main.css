@@ -1,0 +1,9 @@
+.form-center {
+  display: flex;
+  justify-content: center;
+}
+label,
+input {
+  display: flex;
+  flex-direction: column;
+}
