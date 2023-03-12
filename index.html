@@ -25,15 +25,17 @@
       function submitForm() {
         var key = document.getElementById("publicKey").value;
         if (key) {
-          const connection = new Connection("https://api.devnet.solana.com");
-          let publicKey = new PublicKey(key);
-          airdropSol();
+          airdropSol(key);
         } else {
           console.log("Enter valid public key");
         }
       }
-      async function airdropSol() {
+      async function airdropSol(key) {
+        const connection = new Connection("https://api.devnet.solana.com");
+        let publicKey = new PublicKey(key);
         let txnHash = await connection.requestAirdrop(publicKey, 1e9);
+        document.getElementById("publicKey").value = "";
+        console.log(txnHash);
       }
     </script>
   </body>
